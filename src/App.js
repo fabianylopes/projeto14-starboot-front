@@ -1,9 +1,15 @@
-import React from 'react'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-export default function App() {
+import SignIn from "../SignIn/SignIn";
+
+function App() {
   return (
-    <div>
-        StarBoot
-    </div>
+    <BrowserRouter>
+        <Routes>
+            <Route path="/sign-in" element={<SignIn/>}></Route>
+        </Routes>
+    </BrowserRouter>
   )
 }
+
+export default App;
