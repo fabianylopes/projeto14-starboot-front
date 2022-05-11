@@ -16,6 +16,14 @@ const Title = styled.h1`
     color: #252522;
 `
 
+const Text = styled.h2`
+    font-family: 'Actor';
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    color: #1B7138;
+`
+
 const Input = styled.input`
     width: 326px;
     height: 58px;
@@ -30,6 +38,24 @@ const Input = styled.input`
         font-size: 25px;
         line-height: 30px;
         font-weight: 400;
+    }
+`
+
+const SmallerInput = styled.input`
+    width: 150px;
+    height: 58px;
+    padding-left: 8px;
+    border-radius: 5px;
+    border: 1px solid #1B7138;
+    outline: 0;
+   
+    ::placeholder{
+        color: #929292;
+        font-family: 'Actor', sans-serif;
+        font-size: 25px;
+        line-height: 30px;
+        font-weight: 400;
+        text-align: center;
     }
 `
 
@@ -56,6 +82,11 @@ const Form = styled.form`
     gap: 8px;
 `
 
+const Div = styled.div`
+    display: flex;
+    justify-content: space-between;
+`
+
 const StyledLink = styled(Link)`
     font-family: 'Raleway';
     font-weight: 700;
@@ -67,8 +98,11 @@ const StyledLink = styled(Link)`
 export { 
     Img,
     Title, 
+    Text,
     Input, 
+    SmallerInput,
     Button,
     Form, 
+    Div,
     StyledLink 
 }
