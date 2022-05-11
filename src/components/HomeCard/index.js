@@ -2,12 +2,12 @@ import { Card, Image, Title, Description, Button } from "./styled"
 import {useNavigate } from "react-router-dom";
 
 function HomeCard(props){
-    const {image, description, route} = props
+    const {image, title, description, route} = props
     const redirectUser = useNavigate()
     return(
-        <Card>
-            <Image src={image}/>
-            <Title>INDICAÇÃO DO ESPECIALISTA</Title>
+        <Card hasImage = {image !== "" }>
+            <Image src={image} hasImage = {image !== "" }/>
+            <Title>{title}</Title>
             <Description>{description}</Description>
             <Button onClick={()=>redirectUser(route)}>SAIBA MAIS</Button>
         </Card>

@@ -7,13 +7,16 @@ flex-direction: column;
 align-items: center;
 justify-content:  space-around;
 width: 100%;
-height: 477px;
+height: ${props => props.hasImage ? '477px' : '233px'};
+margin-bottom: 10px;
 `
 
 const Image = styled.img`
+background-color: red;
 width: 100%;
 height: 233px;
 object-fit: cover;
+display: ${props => props.hasImage ? "block" : 'none'};
 `
 
 const Title = styled.h1`
