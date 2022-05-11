@@ -1,11 +1,25 @@
+import { useNavigate } from 'react-router';
 import { useState } from  'react';
 
 import {Img, Title, Input, Button, Form, StyledLink } from './style';
 import Logo from '../../assets/logo.png';
+import api from '../../services/api';
 
 function SignIn() {
+  const navigate = useNavigate();
 
   const [formInfo, setFormInfo] = useState({});
+
+  function handleSignIn(e){
+    e.preventDefault();
+
+    api.signIn(formInfo).then(() => navigate('/')).catch(handleFailure);
+  }
+
+  function handleFailure(error){
+    alert(`${error}!\nPreencha os campos corretamente!`);
+    setFormInfo({});
+  }
 
   return (
     <>  
@@ -13,7 +27,7 @@ function SignIn() {
           <img src={Logo}alt=""/>
         </Img>
         <Title>STARBOOT</Title>
-        <Form>
+        <Form onSubmit={handleSignIn}>
           <Input
           type="email" 
           placeholder="E-mail" 
