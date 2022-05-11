@@ -1,9 +1,9 @@
 import HomeCard from '../HomeCard'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import Navbar from '../Navbar'
 
-
-
+import { Main } from './style'
 
 function Home() {
     function getSuggestion() {
@@ -19,24 +19,27 @@ function Home() {
     useEffect(getSuggestion, [])
 
     return (
-        <main>
-            <section>
-                <HomeCard
-                    image={suggestion.image}
-                    title={"INDICAÇÃO DO ESPECIALISTA"}
-                    description={suggestion.description}
-                    route={`/coffees/${suggestion.product_id}}`} />
-            </section>
+        <>
+            <Navbar />
+            <Main>
+                <section>
+                    <HomeCard
+                        image={suggestion.image}
+                        title={"INDICAÇÃO DO ESPECIALISTA"}
+                        description={suggestion.description}
+                        route={`/coffees/${suggestion.product_id}}`} />
+                </section>
 
-            <section>
-                <HomeCard
-                    image={"https://www.starbucks.com.br/public/img/coffee/whole-bean-banner.jpg"}
-                    title={"CONHEÇA NOSSOS CAFÉS"}
-                    description={"Independente do seu gosto ou paladar, encontrará um café Starboot® perfeito para você."}
-                    route={`/coffees}`} />
-            </section>
+                <section>
+                    <HomeCard
+                        image={"https://www.starbucks.com.br/public/img/coffee/whole-bean-banner.jpg"}
+                        title={"CONHEÇA NOSSOS CAFÉS"}
+                        description={"Independente do seu gosto ou paladar, encontrará um café Starboot® perfeito para você."}
+                        route={`/coffees`} />
+                </section>
 
-        </main>
+            </Main>
+        </>
     )
 }
 
