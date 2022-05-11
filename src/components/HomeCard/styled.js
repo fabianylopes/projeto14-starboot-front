@@ -5,14 +5,13 @@ background-color: rgba(238, 235, 232, 1);
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content:  space-around;
+justify-content:  space-between;
 width: 100%;
 height: ${props => props.hasImage ? '477px' : '233px'};
 margin-bottom: 10px;
 `
 
 const Image = styled.img`
-background-color: red;
 width: 100%;
 height: 233px;
 object-fit: cover;
@@ -44,6 +43,7 @@ color: white;
 border: none;
 border-radius: 50px;
 font-size: medium;
+margin-bottom: 20px;
 `
 
 
