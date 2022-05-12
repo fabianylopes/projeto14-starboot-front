@@ -20,7 +20,7 @@ function Home() {
 
     return (
         <>
-            <Navbar />
+            <Navbar color={false} />
             <Main>
                 <section>
                     <HomeCard
