@@ -1,8 +1,9 @@
-import { Nav, HomeLogo, Brand, Options, Option } from "./style"
-import Logo from '../../assets/logo.png';
 import { useNavigate } from "react-router-dom";
 
-function Navbar(){
+import { Nav, HomeLogo, Brand, Options, Coffee, Bag } from "./style";
+import Logo from '../../assets/logo.png';
+
+function Navbar({colorCoffee, colorBag}){
     const redirectUser = useNavigate()
 
     return(
@@ -12,11 +13,11 @@ function Navbar(){
             </HomeLogo>
             
             <Options>
-                <Option onClick={()=> redirectUser('/coffees')}>CAFÉS</Option>
-                <Option onClick={()=> redirectUser('/bag')}>SACOLA</Option>
+                <Coffee colorCoffee={colorCoffee} onClick={()=> redirectUser('/coffees')}>CAFÉS</Coffee>
+                <Bag colorBag={colorBag} onClick={()=> redirectUser('/bag')}>SACOLA</Bag>
             </Options>
         </Nav>
     )
 }
 
-export default Navbar
+export default Navbar;
