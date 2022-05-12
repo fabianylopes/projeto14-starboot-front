@@ -22,6 +22,7 @@ const HomeLogo = styled.div`
 const Brand =  styled.img`
     width: 100%;
     height: 100%;
+    cursor: pointer;
 `
 
 const Options = styled.div`
@@ -31,12 +32,14 @@ const Options = styled.div`
 const Coffee = styled.h3`
     margin: 10px;
     font-size: large;
+    cursor: pointer;
     color: ${({colorCoffee}) => colorCoffee ? '#006341' : '#929292' }
 `
 
 const Bag = styled.h3`
     margin: 10px;
     font-size: large;
+    cursor: pointer;
     color: ${({colorBag}) => colorBag ? '#006341' : '#929292' }
 `
 
