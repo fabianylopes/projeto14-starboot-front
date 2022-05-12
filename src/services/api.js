@@ -8,16 +8,19 @@ function getConfig(token){
 
 function signIn(body){
     const promise = axios.post(`${BASE_URL}/sign-in`, body);
-    
     return promise;
 }
 
 function signUp(body){
     const promise = axios.post(`${BASE_URL}/sign-up`, body);
-    
     return promise;
 }
 
-const api = { signIn, signUp }
+function getCoffees(){
+    const promise = axios.get(`${BASE_URL}/coffees`);
+    return promise;
+}
+
+const api = { signIn, signUp, getCoffees }
 
 export default api;
