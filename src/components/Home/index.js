@@ -7,11 +7,12 @@ import { Main } from './style'
 
 function Home() {
     function getSuggestion() {
-        const promise = axios.get("http://192.168.7.20:5000/suggestions")
+        const promise = axios.get("http://localhost:5000/suggestions")
         promise.then((response) => {
             setSuggestion(response.data)
             console.log(response)
         })
+        
     }
 
     const [suggestion, setSuggestion] = useState({ image: '', description: '', route: '' })
@@ -27,7 +28,7 @@ function Home() {
                         image={suggestion.image}
                         title={"INDICAÇÃO DO ESPECIALISTA"}
                         description={suggestion.description}
-                        route={`/coffees/${suggestion.product_id}}`} />
+                        route={`/coffees/${suggestion.product_id}`} />
                 </section>
 
                 <section>
