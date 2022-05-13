@@ -2,11 +2,13 @@ import { useContext } from 'react'
 
 import UserContext from '../../contexts/UserContext';
 import Navbar from '../Navbar'
-import { Text, Products, Product, Info, Name, Quantity, Price } from './style';
+import { Text, Products, Product, Info, Name, Quantity, Price, Line, Total, Button } from './style';
+import CostumerData from './CostumerData';
 
 function Bag() {
 
-  const { bag, setBag } = useContext(UserContext);
+  const { bag } = useContext(UserContext);
+
 
   if(bag.length === 0){
     return (
@@ -22,14 +24,21 @@ function Bag() {
       <Navbar colorCoffee={false} colorBag={true}/>
       <Products>
         <Product>
-          <img src="" alt=""/>
+          <img src={bag.productImage} alt=""/>
           <Info>
-            <Name></Name>
-            <Quantity></Quantity>
-            <Price></Price>
+            <Name>{bag.name}</Name>
+            <Quantity>Quantidade: 1</Quantity>
+            <Price>R$ {bag.price}</Price>
           </Info>
         </Product>
       </Products>
+      <Line></Line>
+      <Total>
+        <Text>TOTAL:</Text>
+        <Text>R$ 36,99</Text>
+      </Total>
+      <CostumerData/>
+      <Button>FECHAR PEDIDO </Button>
     </>
   )
 }

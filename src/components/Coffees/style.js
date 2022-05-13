@@ -3,6 +3,12 @@ import styled from 'styled-components';
 const Banner = styled.div`
     width: 375px;
     height: 422px;
+    background-color: #EEEBE8;
+    padding-bottom: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     img{
         width: 375px;
@@ -10,11 +16,11 @@ const Banner = styled.div`
 `
 
 const Container = styled.div`
-
+    padding: 18px 30px;
 `
 
 const Title = styled.h1`
-    font-family: 'SoDo Sans';
+    font-family: 'Actor';
     font-weight: 600;
     font-size: 33px;
     line-height: 41px;
@@ -41,8 +47,7 @@ const H2 = styled.h2`
 `
 
 const Items = styled.div`
-    padding-right: 35px;
-    padding-left: 35px;
+    padding-top: 15px;
 
     display: flex;
     flex-wrap: wrap;
@@ -52,9 +57,12 @@ const Items = styled.div`
 const Item = styled.div`
     width: 124px;
     height: 212px;
+    padding: 0px 12px 10px 12px;
 
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 
     img {
         width: 124px;
@@ -71,8 +79,10 @@ const Name = styled.h2`
 `
 
 const Description = styled.div`
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    
 `
 
 const Type = styled.h3`

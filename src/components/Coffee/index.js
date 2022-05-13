@@ -1,12 +1,18 @@
 import Navbar from '../Navbar'
 import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { useNavigate } from 'react-router';
 import axios from 'axios'
 
+import UserContext from '../../contexts/UserContext';
 import { Container, ProductImage, LargeButton, ProductHeader, Subtitle, GoesWellWithSection, Paragraph, DescriptionSection, LongText } from './style'
 import { Title } from "../HomeCard/styled"
 
 function Coffee() {
+    const navigate = useNavigate();
+
+    const { bag, setBag } = useContext(UserContext);
+
     const { coffee_id } = useParams()
     const [coffeeAtributs, setCoffeAtribut] = useState({
         name: '',
@@ -26,11 +32,18 @@ function Coffee() {
             }
         })
         promise.then((response) => {
-            setCoffeAtribut(response.data)
+            setCoffeAtribut(response.data);
         })
     }
 
     useEffect(getCoffee, [])
+
+    function choseCoffee(){
+        setBag(coffeeAtributs);
+        navigate('/bag')
+    }
+
+    console.log(bag)
 
     return (
         <>
@@ -38,7 +51,7 @@ function Coffee() {
             <main>
                 <Container height={'411px'} background_Color={"white"}>
                     <ProductImage src={coffeeAtributs.productImage} />
-                    <LargeButton>ADICIONAR</LargeButton>
+                    <LargeButton onClick={choseCoffee}>ADICIONAR</LargeButton>
                 </Container>
                 <Container height={'170px'} background_Color={'rgba(238, 235, 232, 1)'} justify_content={"space-around"}>
                     <Title>{coffeeAtributs.name}</Title>

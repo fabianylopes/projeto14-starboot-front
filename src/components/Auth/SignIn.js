@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router';
-import { useState } from  'react';
+import { useState, useContext } from  'react';
 
+import UserContext from '../../contexts/UserContext';
 import {Img, Title, Input, Button, Form, StyledLink } from './style';
 import Logo from '../../assets/logo.png';
 import api from '../../services/api';
@@ -8,12 +9,19 @@ import api from '../../services/api';
 function SignIn() {
   const navigate = useNavigate();
 
+  const { userInfo, setUserInfo } = useContext(UserContext);
+
   const [formInfo, setFormInfo] = useState({});
 
   function handleSignIn(e){
     e.preventDefault();
 
-    api.signIn(formInfo).then(() => navigate('/')).catch(handleFailure);
+    api.signIn(formInfo).then(handleSuccess).catch(handleFailure);
+  }
+
+  function handleSuccess(response){
+    setUserInfo(response.data.customerInfo)
+    navigate('/')
   }
 
   function handleFailure(error){

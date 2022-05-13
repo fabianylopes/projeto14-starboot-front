@@ -24,6 +24,7 @@ function SignUp() {
     api.signUp(userData).then(() => navigate('/sign-in')).catch(handleFailure);
   }
 
+
   function handleFailure(error){
     alert(`${error}!\nPreencha os campos corretamente!`);
     setFormInfo({});

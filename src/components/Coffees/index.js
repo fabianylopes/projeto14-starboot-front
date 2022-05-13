@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 import UserContext from '../../contexts/UserContext';
 import {Banner, Container, Title, Text, H2, Item, Items, Name, Description, Type, Price, KnowMoreButton, AddButton} from './style';
@@ -8,8 +9,10 @@ import Image from '../../assets/coffee.png'
 import api from '../../services/api';
 
 function Coffees(){
-    const { bag, setBag } = useContext(UserContext);
+    const navigate = useNavigate();
 
+    const { bag, setBag } = useContext(UserContext);
+    
     const [coffeeList, setCoffeeList] = useState([]);
 
     useEffect(() => getProducts(), []);
@@ -18,28 +21,33 @@ function Coffees(){
         api.getCoffees().then((response) => setCoffeeList(response.data)).catch((error) => console.log(error));
     }
 
+    function choseCoffee(productImage, name, price){
+        setBag({...bag, productImage, name, price});
+        navigate('/bag');
+    }
+
     return(
         <>
             <Navbar colorCoffee={true} colorBag={false}/>
             <Banner>
                 <img src={Image} alt=""/>
-                <Title>PARA TODOS OS GOSTOS</Title>
+                <Title>PARA TODOS<br/> OS GOSTOS</Title>
                 <Text>Leve o sabor de café que você tanto gosta para a sua casa</Text>
             </Banner>
             <Container>
                 <H2>Novos cafés que amamos</H2>
                 <Items>
-                    {coffeeList.map((c, i) => {
+                    {coffeeList.map(({productImage, name, roastType, price, _id }, i) => {
                         return (
                             <Item key={i}>
-                                <img src={c.productImage} alt="" />
-                                <Name>{c.name}</Name>
+                                <img src={productImage} alt="" />
+                                <Name>{name}</Name>
                                 <Description>
-                                    <Type>{`Torra ${c.roastType}`}</Type>
-                                    <Price>{c.price}</Price>
+                                    <Type>{`Torra ${roastType}`}</Type>
+                                    <Price>R$ {price}</Price>
                                 </Description>
-                                <Link to={`/coffees/${c.id}`}><KnowMoreButton>SAIBA MAIS</KnowMoreButton></Link>
-                                <AddButton>ADICIONAR</AddButton>
+                                <Link to={`/coffees/${_id}`}><KnowMoreButton>SAIBA MAIS</KnowMoreButton></Link>
+                                <AddButton onClick={() => choseCoffee(productImage, name, price)}>ADICIONAR</AddButton>
                             </Item>
                         );
                     })}

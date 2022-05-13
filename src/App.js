@@ -12,10 +12,11 @@ import Home from "./components/Home";
 
 function App() {
 
-  const [ bag, setBag] = useState([]);
-
+  const [bag, setBag] = useState({});
+  const [userInfo, setUserInfo] = useState({});
+  
   return (
-    <UserContext.Provider value={{ bag, setBag }}>
+    <UserContext.Provider value={{ bag, setBag, userInfo, setUserInfo }}>
       <BrowserRouter>
           <Routes>
               <Route path="/" element={<Home/>}></Route>
