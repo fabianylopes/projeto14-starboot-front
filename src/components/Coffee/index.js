@@ -4,14 +4,16 @@ import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router';
 import axios from 'axios'
 
-import UserContext from '../../contexts/UserContext';
+//import UserContext from '../../contexts/UserContext';
+import BagContext from '../../contexts/BagContext';
 import { Container, ProductImage, LargeButton, ProductHeader, Subtitle, GoesWellWithSection, Paragraph, DescriptionSection, LongText } from './style'
 import { Title } from "../HomeCard/styled"
 
 function Coffee() {
     const navigate = useNavigate();
 
-    const { bag, setBag } = useContext(UserContext);
+    //const { bag, setBag } = useContext(UserContext);
+    const { bag } = useContext(BagContext);
 
     const { coffee_id } = useParams()
     const [coffeeAtributs, setCoffeAtribut] = useState({
@@ -38,12 +40,36 @@ function Coffee() {
 
     useEffect(getCoffee, [])
 
+    /*
     function choseCoffee(){
         setBag(coffeeAtributs);
         navigate('/bag')
     }
+    */
 
-    console.log(bag)
+    function choseCoffee() {
+
+        const promise = axios.put("http://localhost:5000/bag",
+            {
+                requiredQuantity: 1
+            }, 
+            {
+                params: {
+                    product_id: coffee_id,
+                    bag_id: bag
+                }
+            })
+
+        promise.then((response) => {
+            navigate('/bag')
+        })
+        promise.catch((error)=>{
+            alert('Não foi possível adicionar o item', error)
+            console.log(error)
+        })
+
+    }
+
 
     return (
         <>

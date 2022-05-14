@@ -11,6 +11,7 @@ import Coffee from "./components/Coffee";
 import Home from "./components/Home";
 
 import axios from "axios";
+import { set } from "express/lib/application";
 
 
 
@@ -18,6 +19,7 @@ function App() {
 
   const [bag, setBag] = useState({});
   const [userInfo, setUserInfo] = useState({});
+
 
   function signInAnonymously(){
     /*
@@ -29,8 +31,11 @@ function App() {
       const promise = axios.post("http://localhost:5000/bag")
       promise.then((response) =>{
        localStorage.setItem('bag_token', response.data)
+       setBag(promise.data)
        console.log('token adicionado ao localstorage')
       })
+    } else {
+      setBag(existingToken)
     }
 
   }
