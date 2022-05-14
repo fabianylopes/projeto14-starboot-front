@@ -43,7 +43,7 @@ function Coffee() {
         navigate('/bag')
     }
 
-    console.log(bag)
+    console.log(coffeeAtributs)
 
     return (
         <>
