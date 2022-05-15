@@ -21,7 +21,7 @@ justify-content: center;
 align-items: center;
 width: 100%;
 height: 60px;
-background: rgba(27, 113, 56, 1);
+background: ${props => props.unavailable ? 'orange' : 'rgba(27, 113, 56, 1)'};
 color: white; 
 border: none;
 font-size: medium;
