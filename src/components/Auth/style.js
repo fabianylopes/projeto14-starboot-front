@@ -19,8 +19,10 @@ const Title = styled.h1`
 const Text = styled.h2`
     font-family: 'Actor';
     font-weight: 400;
-    font-size: 21px;
+    font-size: 22px;
     line-height: 25px;
+    margin-top: 22px;
+    margin-bottom: 24px;
     color: #1B7138;
 `
 
@@ -46,6 +48,7 @@ const SmallerInput = styled.input`
     height: 58px;
     padding-left: 8px;
     border-radius: 5px;
+    text-align: center;
     border: 1px solid #1B7138;
     outline: 0;
    
@@ -75,7 +78,7 @@ const Button = styled.button`
 
 const Form = styled.form`
     margin-top: 24px;
-    margin-bottom: 36px;
+    margin-bottom: 22px;
 
     display: flex;
     flex-direction: column;
@@ -92,6 +95,7 @@ const StyledLink = styled(Link)`
     font-weight: 700;
     font-size: 15px;
     line-height: 18px;
+    margin-bottom: 30px;
     color: #03A12D;
 `
 
