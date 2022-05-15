@@ -1,18 +1,19 @@
 import Navbar from '../Navbar'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState, useContext } from 'react'
+import { ThreeDots } from "react-loader-spinner";
 import { useNavigate } from 'react-router';
 import axios from 'axios'
 
 import BagContext from '../../contexts/BagContext';
-import { Container, ProductImage, LargeButton, ProductHeader, Subtitle, GoesWellWithSection, Paragraph, DescriptionSection, LongText } from './style'
+import { Container, ProductImage, LargeButton, Subtitle, GoesWellWithSection, Paragraph, LongText } from './style'
 import { Title } from "../HomeCard/styled"
 
 function Coffee() {
     const navigate = useNavigate();
 
     const { bag } = useContext(BagContext);
-
+    const [loading, setLoading] = useState(false)
     const { coffee_id } = useParams()
     const [coffeeAtributs, setCoffeAtribut] = useState({
         name: '',
@@ -40,6 +41,7 @@ function Coffee() {
 
 
     function choseCoffee() {
+        setLoading(true)
 
         const promise = axios.put("http://localhost:5000/bag",
             {
@@ -48,7 +50,7 @@ function Coffee() {
             {
                 params: {
                     product_id: coffee_id,
-                    bag_id: bag
+                    bag_token: bag
                 }
             })
 
@@ -56,6 +58,7 @@ function Coffee() {
             navigate('/bag')
         })
         promise.catch((error)=>{
+            setLoading(false)
             alert('Não foi possível adicionar o item', error)
             console.log(error)
         })
@@ -68,7 +71,9 @@ function Coffee() {
             <main>
                 <Container height={'411px'} background_Color={"white"}>
                     <ProductImage src={coffeeAtributs.productImage} />
-                    <LargeButton onClick={choseCoffee}>ADICIONAR</LargeButton>
+                    <LargeButton onClick={choseCoffee} unavailable={coffeeAtributs.quantity === ""} disabled={coffeeAtributs.quantity === ""}>
+                    {loading ? <ThreeDots color="white" height={100} width={100}/> : coffeeAtributs.quantity === "" ?  "INDISPONÍVEL" : "ADICIONAR"}
+                    </LargeButton>
                 </Container>
                 <Container height={'170px'} background_Color={'rgba(238, 235, 232, 1)'} justify_content={"space-around"}>
                     <Title>{coffeeAtributs.name}</Title>
