@@ -15,13 +15,14 @@ function Bag() {
 
   const [total, setTotal] = useState(0.0)
   const [items, setItems] = useState([]) //{productImage:'', name: '', quantity: 0.0, price: 0.0}
-  const [customer_id, setCustomer_id] = useState(null)
+  const [customer_id, setCustomer_id] = useState(undefined)
   const {bag} = useContext(BagContext)
 
   function getBag(){
     const promise = axios.get("http://localhost:5000/bag",{ headers: { Authorization: `Bearer ${bag}` }})
     promise.then((response) =>{
       const {products, customer_id} = response.data
+      console.log(customer_id)
       setCustomer_id(customer_id)
       setItems(products)
       evaluateTotal(products)
@@ -73,13 +74,12 @@ function Bag() {
         <Text>TOTAL:</Text>
         <Text>{`R$ ${total}`}</Text>
       </Total>
-      <Button onClick={() => navigate('/sign-in')}>FECHAR PEDIDO</Button>
       {/* <Success/> */}
       {
-        customer_id !== null ? <CostumerData/>: ''
+        customer_id === undefined ? <CostumerData/>: ''
       }
       {
-        customer_id !== null ? <Button>COMPRAR</Button> : <Button>FECHAR PEDIDO </Button>
+        customer_id === undefined ? <Button>COMPRAR</Button> : <Button onClick={() => navigate('/sign-in')}>FECHAR PEDIDO </Button>
       }
     </>
   )

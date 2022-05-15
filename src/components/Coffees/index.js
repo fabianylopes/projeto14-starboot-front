@@ -7,6 +7,7 @@ import {Banner, Container, Title, Text, H2, Item, Items, Name, Description, Type
 import Navbar from "../Navbar";
 import Image from '../../assets/coffee.png'
 import api from '../../services/api';
+import axios from 'axios';
 
 function Coffees(){
     const navigate = useNavigate();
@@ -21,11 +22,31 @@ function Coffees(){
         api.getCoffees().then((response) => setCoffeeList(response.data)).catch((error) => console.log(error));
     }
 
-    function choseCoffee(productImage, name, price){
-        setBag({token: bag, productImage, name, price});
-        navigate('/bag');
+    function choseCoffee(coffee_id) {
+        //setLoading(true)
+
+        const promise = axios.put("http://localhost:5000/bag",
+            {
+                requiredQuantity: 1
+            }, 
+            {
+                params: {
+                    product_id: coffee_id,
+                    bag_token: bag
+                }
+            })
+
+        promise.then(() => {
+            navigate('/bag')
+        })
+        promise.catch((error)=>{
+            //setLoading(false)
+            alert('Não foi possível adicionar o item', error)
+            console.log(error)
+        })
+
     }
-    console.log(bag);
+
     return(
         <>
             <Navbar colorCoffee={true} colorBag={false}/>
@@ -47,7 +68,7 @@ function Coffees(){
                                     <Price>R$ {price}</Price>
                                 </Description>
                                 <Link to={`/coffees/${_id}`}><KnowMoreButton>SAIBA MAIS</KnowMoreButton></Link>
-                                <AddButton onClick={() => choseCoffee(productImage, name, price)}>ADICIONAR</AddButton>
+                                <AddButton onClick={() => choseCoffee(_id)}>ADICIONAR</AddButton>
                             </Item>
                         );
                     })}
