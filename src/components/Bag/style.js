@@ -11,15 +11,26 @@ const Container = styled.div`
   justify-content: space-between;
 `
 
-const Text = styled.h1`
+const Title = styled.h1`
+    font-family: 'Actor';
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    color: #252522;
+`
+
+const Text = styled.h2`
     font-family: 'Actor';
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
+    text-align: start;
     color: #000000;
 `
 
-const Products = styled.div``
+const Products = styled.div`
+    margin-top: 10px;
+`
 
 const Product = styled.div`
     width: 340px;
@@ -91,6 +102,7 @@ const Button = styled.button`
     background-color: #1B7138;
     border: none;
     border-radius: 24px;
+    margin-top: 200px;
     cursor: pointer;
 
     font-family: 'Actor';
@@ -100,8 +112,54 @@ const Button = styled.button`
     color: #FFFFFF;
 `
 
+const Box = styled.div`
+    width: 334px;
+    height: 180px;
+    padding: 10px 20px;
+    margin-top: 18px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+`
+
+const H1 = styled.h1`
+    font-family: 'Actor';
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #1B7138;
+`
+
+const H2 = styled.h1`
+    font-family: 'Actor';
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+    color: #252522;
+`
+const SuccessButton = styled.button`
+    width: 235px;
+    height: 45px;
+    background-color: #FFFFFF;
+    border: 1px solid #03A12D;
+    border-radius: 24px;
+    cursor: pointer;
+    
+    font-family: 'Actor';
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 26px;
+    color: #1B7138;
+`
+
 export {
     Container,
+    Title,
     Text,
     Products, 
     Product, 
@@ -111,5 +169,9 @@ export {
     Price,
     Line,
     Total,
-    Button
+    Button,
+    Box,
+    H1,
+    H2,
+    SuccessButton
 }

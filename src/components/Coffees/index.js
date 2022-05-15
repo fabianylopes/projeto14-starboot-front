@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 
-import UserContext from '../../contexts/UserContext';
+import BagContext from '../../contexts/BagContext';
 import {Banner, Container, Title, Text, H2, Item, Items, Name, Description, Type, Price, KnowMoreButton, AddButton} from './style';
 import Navbar from "../Navbar";
 import Image from '../../assets/coffee.png'
@@ -11,7 +11,7 @@ import api from '../../services/api';
 function Coffees(){
     const navigate = useNavigate();
 
-    const { bag, setBag } = useContext(UserContext);
+    const { bag, setBag } = useContext(BagContext);
     
     const [coffeeList, setCoffeeList] = useState([]);
 
@@ -22,10 +22,10 @@ function Coffees(){
     }
 
     function choseCoffee(productImage, name, price){
-        setBag({...bag, productImage, name, price});
+        setBag({token: bag, productImage, name, price});
         navigate('/bag');
     }
-
+    console.log(bag);
     return(
         <>
             <Navbar colorCoffee={true} colorBag={false}/>

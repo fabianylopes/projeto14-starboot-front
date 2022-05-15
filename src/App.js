@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
+import BagContext from "./contexts/BagContext";
 import UserContext from "./contexts/UserContext";
 import SignIn from './components/Auth/SignIn';
 import SignUp from './components/Auth/SignUp';
@@ -9,14 +10,42 @@ import Coffees from "./components/Coffees";
 import Coffee from "./components/Coffee";
 import Home from "./components/Home";
 
+import axios from "axios";
+import { set } from "express/lib/application";
 
 function App() {
 
-  const [bag, setBag] = useState({});
+  const [bag, setBag] = useState({userInfo: null});
   const [userInfo, setUserInfo] = useState({});
+
+
+  function signInAnonymously(){
+    /*
+    [] verificar se existe uma sessão para a sacola
+    [] criar nova sessão, caso não exista uma
+    */
+    const existingToken = localStorage.getItem('bag_token')
+    if (!existingToken){
+      const promise = axios.post("http://localhost:5000/bag")
+      promise.then((response) =>{
+       localStorage.setItem('bag_token', response.data)
+       setBag(response.data)
+       console.log('token adicionado ao localstorage')
+      })
+    } else {
+      setBag(existingToken)
+    }
+
+    console.log(existingToken);
+    console.log(bag);
+
+  }
+
+    useEffect(signInAnonymously, [])
   
   return (
-    <UserContext.Provider value={{ bag, setBag, userInfo, setUserInfo }}>
+    <BagContext.Provider value={{ bag, setBag}}>
+    <UserContext.Provider value={{userInfo, setUserInfo }}>
       <BrowserRouter>
           <Routes>
               <Route path="/" element={<Home/>}></Route>
@@ -28,6 +57,7 @@ function App() {
           </Routes>
       </BrowserRouter>
     </UserContext.Provider>
+    </BagContext.Provider>
   )
 }
 

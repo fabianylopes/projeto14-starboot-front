@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router';
 import { useState, useContext } from  'react';
 
+import BagContext from '../../contexts/BagContext';
 import UserContext from '../../contexts/UserContext';
 import {Img, Title, Input, Button, Form, StyledLink } from './style';
 import Logo from '../../assets/logo.png';
@@ -10,6 +11,7 @@ function SignIn() {
   const navigate = useNavigate();
 
   const { userInfo, setUserInfo } = useContext(UserContext);
+  const { bag, setBag } = useContext(BagContext);
 
   const [formInfo, setFormInfo] = useState({});
 
@@ -20,7 +22,10 @@ function SignIn() {
   }
 
   function handleSuccess(response){
-    setUserInfo(response.data.customerInfo)
+    //setUserInfo(response.data.customerInfo);
+    ///console.log(userInfo)
+    setBag({...bag, userInfo: response.data.customerInfo});
+
     navigate('/')
   }
 
@@ -28,6 +33,8 @@ function SignIn() {
     alert(`${error}!\nPreencha os campos corretamente!`);
     setFormInfo({});
   }
+
+  console.log(bag)
 
   return (
     <>  
