@@ -5,7 +5,7 @@ import { Title, Text, Products, Product, Info, Name, Quantity, Price, Line, Tota
 import BagContext from '../../contexts/BagContext';
 import Navbar from '../Navbar'
 import CostumerData from './CostumerData';
-import Success from './Success';
+//import Success from './Success';
 
 function Bag() {
   const navigate = useNavigate();
@@ -13,11 +13,11 @@ function Bag() {
   const { bag } = useContext(BagContext);
 
 
-  if(bag.length === 0){
+  if(bag.length !== 0){
     return (
       <>
         <Navbar colorCoffee={false} colorBag={true}/>
-        <Text>O seu carrinho está vazio!</Text>
+        <Text font-size={'50px'}>O seu carrinho está vazio!</Text>
       </>
     );
   }
