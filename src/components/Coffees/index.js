@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
+import axios from 'axios';
 
 import BagContext from '../../contexts/BagContext';
 import {Banner, Container, Title, Text, H2, Item, Items, Name, Description, Type, Price, KnowMoreButton, AddButton} from './style';
@@ -15,15 +16,34 @@ function Coffees(){
     
     const [coffeeList, setCoffeeList] = useState([]);
 
+    const [coffeeAtributs, setCoffeAtribut] = useState({
+        name: '',
+        price: '',
+        quantity: '',
+        productImage: '',
+        description: '',
+        descriptionImage: '',
+        roastType: '',
+        density: '',
+        goesWellWith: ''
+    })
+
+
     useEffect(() => getProducts(), []);
 
     function getProducts(){
         api.getCoffees().then((response) => setCoffeeList(response.data)).catch((error) => console.log(error));
     }
 
-    function choseCoffee(productImage, name, price){
-        setBag({token: bag, productImage, name, price});
-        navigate('/bag');
+    function choseCoffee(coffee_id){
+        const promise = axios.get("http://localhost:5000/coffees", {
+            params: {
+                id: coffee_id
+            }
+        })
+        promise.then((response) => {
+            setCoffeAtribut(response.data);
+        })
     }
     console.log(bag);
     return(
@@ -47,7 +67,7 @@ function Coffees(){
                                     <Price>R$ {price}</Price>
                                 </Description>
                                 <Link to={`/coffees/${_id}`}><KnowMoreButton>SAIBA MAIS</KnowMoreButton></Link>
-                                <AddButton onClick={() => choseCoffee(productImage, name, price)}>ADICIONAR</AddButton>
+                                <AddButton onClick={() => choseCoffee(_id)}>ADICIONAR</AddButton>
                             </Item>
                         );
                     })}
