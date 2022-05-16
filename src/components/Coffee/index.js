@@ -41,7 +41,7 @@ function Coffee() {
         });
     }
 
-    useEffect(getCoffee, [getCoffee])
+    useEffect(getCoffee, [])
 
     function choseCoffee() {
         setLoading(true)
@@ -62,7 +62,14 @@ function Coffee() {
         });
 
         promise.catch((error)=>{
+<<<<<<< HEAD
             setLoading(false);
+=======
+            setLoading(false)
+            alert('Ops. Parece que o ítem ficou indisponível em nosso estoque. Nossas sinceras desculpas.', error)
+            console.log(error)
+        })
+>>>>>>> a1f041be2b24ee32ec8ee38e9c36bc642db1f27a
 
             alert('Não foi possível adicionar o item', error)
             console.log(error);
@@ -81,14 +88,14 @@ function Coffee() {
                 </Container>
                 <Container height={'170px'} background_Color={'rgba(238, 235, 232, 1)'} justify_content={"space-around"}>
                     <Title>{coffeeAtributs.name}</Title>
-                    <Subtitle>{coffeeAtributs.density}</Subtitle>
+                    <Subtitle color='rgba(27, 113, 56, 1)'>{coffeeAtributs.density}</Subtitle>
                     <GoesWellWithSection>
-                        <Subtitle>PARA ACOMPANHAR</Subtitle>
+                        <Subtitle >PARA ACOMPANHAR</Subtitle>
                         <Paragraph>{coffeeAtributs.goesWellWith}</Paragraph>
                     </GoesWellWithSection>
                 </Container>
                 <Container height={'100px'}>
-                    <Subtitle>DESCRIÇÃO</Subtitle>
+                    <Subtitle color='rgba(27, 113, 56, 1)'>DESCRIÇÃO</Subtitle>
                 </Container>
                 <Container>
                     <ProductImage src={coffeeAtributs.descriptionImage} />
@@ -96,7 +103,7 @@ function Coffee() {
                         {coffeeAtributs.description}
                     </LongText>
                 </Container>
-                <Subtitle>Preço: {coffeeAtributs.price}</Subtitle>
+                <Subtitle color='rgba(27, 113, 56, 1)'>Preço - R$: {coffeeAtributs.price}</Subtitle>
             </main>
         </>
     )

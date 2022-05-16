@@ -123,7 +123,7 @@ const KnowMoreButton = styled.button`
 const AddButton = styled.button`
     width: 98px;
     height: 16px;
-    background-color: #1B7138;
+    background: ${props => props.unavailable ? 'orange' : 'rgba(27, 113, 56, 1)'};
     border-radius: 1px;
     border: none;
     cursor: pointer;

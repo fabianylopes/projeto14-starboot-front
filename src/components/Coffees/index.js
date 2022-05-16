@@ -64,7 +64,7 @@ function Coffees(){
                                     <Price>R$ {price}</Price>
                                 </Description>
                                 <Link to={`/coffees/${_id}`}><KnowMoreButton>SAIBA MAIS</KnowMoreButton></Link>
-                                <AddButton onClick={() => choseCoffee(_id)}>ADICIONAR</AddButton>
+                                <AddButton unavailable={quantity<1} onClick={() => choseCoffee(_id) }>{quantity<1 ? 'INDISPONÍVEL': 'ADICIONAR'}</AddButton>
                             </Item>
                         );
                     })}
