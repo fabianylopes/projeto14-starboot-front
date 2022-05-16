@@ -10,6 +10,7 @@ import CostumerData from './CostumerData';
 //import Success from './Success';
 import axios from 'axios'
 
+
 function Bag() {
   const navigate = useNavigate();
 
@@ -17,15 +18,32 @@ function Bag() {
   const [items, setItems] = useState([]) //{productImage:'', name: '', quantity: 0.0, price: 0.0}
   const [customer_id, setCustomer_id] = useState(undefined)
   const {bag} = useContext(BagContext)
+  const { userInfo, setUserInfo } = useContext(UserContext)
 
   function getBag(){
     const promise = axios.get("http://localhost:5000/bag",{ headers: { Authorization: `Bearer ${bag}` }})
     promise.then((response) =>{
       const {products, customer_id} = response.data
       setCustomer_id(customer_id)
+      checkCustomerID(customer_id)
       setItems(products)
       evaluateTotal(products)
     })
+  }
+
+  function checkCustomerID(id){
+    if(id){
+      const promise = axios.get('http://localhost:5000/customer', {
+        params: {
+            id
+        }
+    }
+      )
+      promise.then((response)=>{
+        setUserInfo(response.data)
+        console.log(userInfo)
+      })
+    }
   }
 
   function evaluateTotal(data){

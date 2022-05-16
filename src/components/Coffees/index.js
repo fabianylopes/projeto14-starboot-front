@@ -58,7 +58,7 @@ function Coffees(){
             <Container>
                 <H2>Novos cafés que amamos</H2>
                 <Items>
-                    {coffeeList.map(({productImage, name, roastType, price, _id }, i) => {
+                    {coffeeList.map(({productImage, name, roastType, price, quantity, _id }, i) => {
                         return (
                             <Item key={i}>
                                 <img src={productImage} alt="" />

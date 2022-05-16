@@ -25,7 +25,7 @@ function SignIn() {
   function handleSuccess(response) {
     //setUserInfo(response.data.customerInfo);
     ///console.log(userInfo)
-    setUserInfo({...userInfo, userInfo: response.data.customerInfo});
+    //setUserInfo({...userInfo, userInfo: response.data.customerInfo});
     const promise = axios.put("http://localhost:5000/bag",
       {
         newCustomer_id: response.data.customer_id,
