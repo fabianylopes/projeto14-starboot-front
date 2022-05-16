@@ -33,7 +33,7 @@ function App() {
     }
   }
   
-  useEffect(signInAnonymously, [signInAnonymously]);
+  useEffect(signInAnonymously, []);
   
   return (
     <BagContext.Provider value={{ bag, setBag}}>
