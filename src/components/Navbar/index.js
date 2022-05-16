@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import { Nav, HomeLogo, Brand, Options, Coffee, Bag } from "./style";
-import Logo from '../../assets/logo.png';
+import Logo_Small from "../../assets/logo-small.js";
 
 function Navbar({colorCoffee, colorBag}){
     const redirectUser = useNavigate()
@@ -9,7 +9,9 @@ function Navbar({colorCoffee, colorBag}){
     return(
         <Nav>
             <HomeLogo onClick={()=> redirectUser('/')}>
-            <Brand src={Logo}/>
+            <Brand>
+                {Logo_Small}
+            </Brand>
             </HomeLogo>
             
             <Options>

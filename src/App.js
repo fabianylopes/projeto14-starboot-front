@@ -13,10 +13,12 @@ import Home from "./components/Home";
 import axios from "axios";
 
 
+
+
 function App() {
 
-  const [bag, setBag] = useState({userInfo: null});
-  const [userInfo, setUserInfo] = useState({});
+  const [bag, setBag] = useState({});
+  const [userInfo, setUserInfo] = useState({name:'', street:'', number:'', city:'', state:''});
 
 
   function signInAnonymously(){
@@ -30,14 +32,11 @@ function App() {
       promise.then((response) =>{
        localStorage.setItem('bag_token', response.data)
        setBag(response.data)
-       console.log('token adicionado ao localstorage')
+       
       })
     } else {
       setBag(existingToken)
     }
-
-    console.log(existingToken);
-    console.log(bag);
 
   }
 

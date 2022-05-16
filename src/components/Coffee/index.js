@@ -74,8 +74,8 @@ function Coffee() {
             <main>
                 <Container height={'411px'} background_Color={"white"}>
                     <ProductImage src={coffeeAtributs.productImage} />
-                    <LargeButton onClick={choseCoffee} unavailable={coffeeAtributs.quantity === ""} disabled={coffeeAtributs.quantity === ""}>
-                    {loading ? <ThreeDots color="white" height={100} width={100}/> : coffeeAtributs.quantity === "" ?  "INDISPONÍVEL" : "ADICIONAR"}
+                    <LargeButton onClick={choseCoffee} unavailable={coffeeAtributs.quantity <1 } disabled={coffeeAtributs.quantity <1 }>
+                    {loading ? <ThreeDots color="white" height={100} width={100}/> : coffeeAtributs.quantity <1 ?  "INDISPONÍVEL" : "ADICIONAR"}
                     </LargeButton>
                 </Container>
                 <Container height={'170px'} background_Color={'rgba(238, 235, 232, 1)'} justify_content={"space-around"}>

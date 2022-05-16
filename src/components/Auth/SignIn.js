@@ -4,9 +4,8 @@ import { useState, useContext } from 'react';
 import BagContext from '../../contexts/BagContext';
 import UserContext from '../../contexts/UserContext';
 import { Img, Title, Input, Button, Form, StyledLink } from './style';
-import Logo from '../../assets/logo.png';
+import Logo from '../../assets/logo.js';
 import api from '../../services/api';
-import axios from 'axios';
 
 function SignIn() {
   const navigate = useNavigate();
@@ -23,23 +22,13 @@ function SignIn() {
   }
 
   function handleSuccess(response) {
-    ///console.log(userInfo)
-    setUserInfo({...userInfo, userInfo: response.data.customerInfo});
+    const body = 
+    {
+      newCustomer_id: response.data.customer_id,
+      bag_token: bag
+    }
 
-    const promise = axios.put("http://localhost:5000/bag",
-      {
-        newCustomer_id: response.data.customer_id,
-        bag_token: bag
-      })
-
-    promise.then(() => {
-      navigate('/bag')
-    })
-    promise.catch((error) => {
-
-      alert('Não foi possível adicionar o item', error)
-      console.log(error)
-    })
+    api.putBag(body).then(() => navigate('/bag')).catch((error) => alert('Não foi possível adicionar o item', error));
   }
 
   function handleFailure(error) {
@@ -47,11 +36,10 @@ function SignIn() {
     setFormInfo({});
   }
 
-
   return (
     <>
       <Img>
-        <img src={Logo} alt="" />
+       {Logo}
       </Img>
       <Title>STARBOOT</Title>
       <Form onSubmit={handleSignIn}>
