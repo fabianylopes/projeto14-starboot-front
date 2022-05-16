@@ -56,7 +56,7 @@ function Bag() {
     setTotal(total.toFixed(2));
   }
 
-  useEffect(getBag, [getBag]);
+  useEffect(getBag, []);
 
   function checkOut(){
     const confirmBuy = window.confirm('Deseja realmente finalizar a compra?');
