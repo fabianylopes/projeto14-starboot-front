@@ -8,19 +8,16 @@ import Navbar from '../Navbar'
 import CostumerData from './CostumerData';
 import axios from 'axios'
 import api from '../../services/api';
-import UserContext from '../../contexts/UserContext';
 
 function Bag() {
   const navigate = useNavigate();
 
   const { bag } = useContext(BagContext);
-  const { userInfo } = useContext(UserContext);
   
   const [orderNumber, setOrderNumber] = useState(null);
   const [total, setTotal] = useState(0.0);
   const [items, setItems] = useState([]) //{productImage:'', name: '', quantity: 0.0, price: 0.0}
-  const [customer_id, setCustomer_id] = useState(undefined);
-
+  const [customer_id, setCustomer_id] = useState(undefined)
   const token = bag.token;
 
   function getBag(){
