@@ -1,17 +1,14 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
+import { useState, useEffect } from 'react';
 
-import Navbar from '../Navbar'
-import HomeCard from '../HomeCard'
-import { Main } from './style'
+import { Main } from './style';
+import Navbar from '../Navbar';
+import HomeCard from '../HomeCard';
+import api from '../../services/api';
 
 function Home() {
+
     function getSuggestion() {
-        const promise = axios.get("http://localhost:5000/suggestions")
-        promise.then((response) => {
-            setSuggestion(response.data)
-            console.log(response)
-        })
+        api.showSuggestion().then((response) => setSuggestion(response.data));
         
     }
 
@@ -41,7 +38,7 @@ function Home() {
 
             </Main>
         </>
-    )
+    );
 }
 
 export default Home;

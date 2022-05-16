@@ -21,6 +21,10 @@ function putBag(body){
     return promise;
 }
 
+function showSuggestion(){
+    const promise = axios.get(`${BASE_URL}/suggestions`);
+    return promise;
+}
 
 function getCoffees(){
     const promise = axios.get(`${BASE_URL}/coffees`);
@@ -33,6 +37,6 @@ function checkout(body, token){
     return promise;
 }
 
-const api = { signIn, putBag, signUp, getCoffees, checkout }
+const api = { signIn, putBag, signUp, showSuggestion, getCoffees, checkout }
 
 export default api;

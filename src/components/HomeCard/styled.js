@@ -2,13 +2,14 @@ import styled from "styled-components";
 
 const Card = styled.article`
     background-color: rgba(238, 235, 232, 1);
+    width: 100%;
+    height: ${props => props.hasImage ? '477px' : '233px'};
+    margin-bottom: 10px;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content:  space-between;
-    width: 100%;
-    height: ${props => props.hasImage ? '477px' : '233px'};
-    margin-bottom: 10px;
 `
 
 const Image = styled.img`
@@ -33,10 +34,7 @@ const Description = styled.h2`
 `
 
 const Button = styled.button`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50vw;
+    width: 235px;
     height: 45px;
     background: rgba(27, 113, 56, 1);
     color: white; 
@@ -45,7 +43,10 @@ const Button = styled.button`
     font-size: medium;
     margin-bottom: 20px;
     cursor: pointer;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
-
 
 export {Card, Image, Title, Description, Button}
