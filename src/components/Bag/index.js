@@ -63,13 +63,15 @@ function Bag() {
     const confirmBuy = window.confirm('Deseja realmente finalizar a compra?');
     
     if(confirmBuy){
-      api.checkout(bag, token).then(handleSuccess).catch((error) => console.log(error));
+      api.checkout(bag, token).then(handleSuccess).catch((error) => console.log("deu ruim", error));
     }
     
   }
 
   function handleSuccess(response){
-    setOrderNumber(response.data);
+    const {orderNumber} = response.data
+    setOrderNumber(orderNumber);
+   
   }
 
   if(items.length === 0){
@@ -108,7 +110,7 @@ function Bag() {
         <Text>{`R$ ${total}`}</Text>
       </Total>
 
-      {customer_id !== undefined  && <CostumerData/>}
+      {customer_id   && <CostumerData/>}
       
       <LastPage/>
     </>
@@ -116,7 +118,7 @@ function Bag() {
 
 
   function LastPage(){
-    if(orderNumber !== null && customer_id !== undefined){
+    if(orderNumber  && customer_id ){
       return (
         <Box>
           <div>
@@ -128,7 +130,7 @@ function Bag() {
       );
     } else {
       return (
-        customer_id !== undefined ? <Button onClick={checkOut}>COMPRAR</Button> : <Button onClick={() => navigate('/sign-in')}>FECHAR PEDIDO</Button>
+        customer_id ? <Button onClick={checkOut}>COMPRAR</Button> : <Button onClick={() => navigate('/sign-in')}>FECHAR PEDIDO</Button>
       );
     }
 

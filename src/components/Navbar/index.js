@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
 import { Nav, HomeLogo, Brand, Options, Coffee, Bag } from "./style";
-import Logo from '../../assets/logo.js';
 import Logo_Small from "../../assets/logo-small.js";
 
 function Navbar({colorCoffee, colorBag}){
