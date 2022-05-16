@@ -62,11 +62,11 @@ function Coffee() {
         });
 
         promise.catch((error)=>{
-            setLoading(false);
+            setLoading(false)
+            alert('Ops. Parece que o ítem ficou indisponível em nosso estoque. Nossas sinceras desculpas.', error)
+            console.log(error)
+        })
 
-            alert('Não foi possível adicionar o item', error)
-            console.log(error);
-        });
     }
 
     return (
