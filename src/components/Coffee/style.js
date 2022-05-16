@@ -39,12 +39,14 @@ const Subtitle = styled.h2`
     font-size: large;
     padding:0 20px;
     text-align: center;
-    color: rgba(27, 113, 56, 1);
+    color: ${props => props.color}
     `
 const GoesWellWithSection = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+   
+    
 `
 const SubSubtitle = styled.h3`
     color: rgba(37, 37, 34, 1);
@@ -58,6 +60,7 @@ const Paragraph = styled.p`
     font-size: large;
     padding:0 20px;
     text-align: center;
+    font-family: 'Raleway';
 `
 const LongText = styled.span`
     color: rgba(37, 37, 34, 1);
@@ -66,6 +69,7 @@ const LongText = styled.span`
     padding:0 40px;
     text-align: center;
     white-space: pre-line;
+    font-family: 'Raleway';
 `
 const DescriptionSection = styled.section`
     display: flex;

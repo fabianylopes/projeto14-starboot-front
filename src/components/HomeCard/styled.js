@@ -30,6 +30,7 @@ const Description = styled.h2`
     font-size: large;
     padding:0 20px;
     text-align: center;
+      font-family: 'Raleway', sans-serif;
 `
 
 const Button = styled.button`
