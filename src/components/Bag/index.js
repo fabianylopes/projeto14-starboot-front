@@ -41,13 +41,18 @@ function Bag() {
   useEffect(getBag, [getBag]);
 
   function checkOut(){
-    api.checkout(bag, token).then(handleSuccess).catch((error) => console.log(error));
+    
+    const confirmBuy = confirm('Deseja realmente finalizar a compra?');
+    
+    if(confirmBuy){
+      api.checkout(bag, token).then(handleSuccess).catch((error) => console.log(error));
+    }
+    
   }
 
   function handleSuccess(response){
     setOrderNumber(response.data);
   }
-  
 
   if(items.length === 0){
     return (
