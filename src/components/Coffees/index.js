@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 
-import BagContext from '../../contexts/BagContext';
 import {Banner, Container, Title, Text, H2, Item, Items, Name, Description, Type, Price, KnowMoreButton, AddButton} from './style';
+import BagContext from '../../contexts/BagContext';
 import Navbar from "../Navbar";
 import Image from '../../assets/coffee.png'
 import api from '../../services/api';

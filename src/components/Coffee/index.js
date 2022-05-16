@@ -34,14 +34,14 @@ function Coffee() {
             params: {
                 id: coffee_id
             }
-        })
+        });
+
         promise.then((response) => {
             setCoffeAtribut(response.data);
-        })
+        });
     }
 
     useEffect(getCoffee, [getCoffee])
-
 
     function choseCoffee() {
         setLoading(true)
@@ -55,17 +55,18 @@ function Coffee() {
                     product_id: coffee_id,
                     bag_token: bag
                 }
-            })
+            });
 
         promise.then(() => {
-            navigate('/bag')
-        })
-        promise.catch((error)=>{
-            setLoading(false)
-            alert('Não foi possível adicionar o item', error)
-            console.log(error)
-        })
+            navigate('/bag');
+        });
 
+        promise.catch((error)=>{
+            setLoading(false);
+
+            alert('Não foi possível adicionar o item', error)
+            console.log(error);
+        });
     }
 
     return (
@@ -98,9 +99,7 @@ function Coffee() {
                 <Subtitle>Preço: {coffeeAtributs.price}</Subtitle>
             </main>
         </>
-
     )
 }
 
-export default Coffee
-
+export default Coffee;
