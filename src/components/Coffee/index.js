@@ -34,14 +34,14 @@ function Coffee() {
             params: {
                 id: coffee_id
             }
-        })
+        });
+
         promise.then((response) => {
             setCoffeAtribut(response.data);
-        })
+        });
     }
 
     useEffect(getCoffee, [])
-
 
     function choseCoffee() {
         setLoading(true)
@@ -55,17 +55,25 @@ function Coffee() {
                     product_id: coffee_id,
                     bag_token: bag
                 }
-            })
+            });
 
         promise.then(() => {
-            navigate('/bag')
-        })
+            navigate('/bag');
+        });
+
         promise.catch((error)=>{
+<<<<<<< HEAD
+            setLoading(false);
+=======
             setLoading(false)
             alert('Ops. Parece que o ítem ficou indisponível em nosso estoque. Nossas sinceras desculpas.', error)
             console.log(error)
         })
+>>>>>>> a1f041be2b24ee32ec8ee38e9c36bc642db1f27a
 
+            alert('Não foi possível adicionar o item', error)
+            console.log(error);
+        });
     }
 
     return (
@@ -98,9 +106,7 @@ function Coffee() {
                 <Subtitle color='rgba(27, 113, 56, 1)'>Preço - R$: {coffeeAtributs.price}</Subtitle>
             </main>
         </>
-
     )
 }
 
-export default Coffee
-
+export default Coffee;

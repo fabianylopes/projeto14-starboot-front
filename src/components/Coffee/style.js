@@ -1,23 +1,22 @@
 import styled from "styled-components";
 
-
 const ImageContainer = styled.section`
     width: 100vw;
     height: 411px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 `
+
 const ProductImage = styled.img`
     width: 100%;
     height: calc(411px - 45px);
     object-fit: cover;
 `
+
 const LargeButton = styled.button`
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     height: 60px;
     background: ${props => props.unavailable ? 'orange' : 'rgba(27, 113, 56, 1)'};
@@ -25,22 +24,30 @@ const LargeButton = styled.button`
     border: none;
     font-size: medium;
     cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
+
 const ProductHeader = styled.section`
     width: 100vw;
     height: 200px;
+    background-color: rgba(238, 235, 232, 1);
+
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background-color: rgba(238, 235, 232, 1);
 `
+
 const Subtitle = styled.h2`
     color: rgba(37, 37, 34, 1);
     font-size: large;
     padding:0 20px;
     text-align: center;
     color: ${props => props.color}
-    `
+`
+
 const GoesWellWithSection = styled.section`
     display: flex;
     flex-direction: column;
@@ -48,6 +55,7 @@ const GoesWellWithSection = styled.section`
    
     
 `
+
 const SubSubtitle = styled.h3`
     color: rgba(37, 37, 34, 1);
     font-size: medium;
@@ -55,6 +63,7 @@ const SubSubtitle = styled.h3`
     text-align: center;
     font-weight: 700;
 `
+
 const Paragraph = styled.p`
     color: rgba(37, 37, 34, 1);
     font-size: large;
@@ -62,6 +71,7 @@ const Paragraph = styled.p`
     text-align: center;
     font-family: 'Raleway';
 `
+
 const LongText = styled.span`
     color: rgba(37, 37, 34, 1);
     font-size: large;
@@ -71,6 +81,7 @@ const LongText = styled.span`
     white-space: pre-line;
     font-family: 'Raleway';
 `
+
 const DescriptionSection = styled.section`
     display: flex;
     flex-direction: column;
