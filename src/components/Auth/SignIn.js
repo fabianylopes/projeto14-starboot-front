@@ -47,7 +47,6 @@ function SignIn() {
     setFormInfo({});
   }
 
-  console.log(bag)
 
   return (
     <>

@@ -1,20 +1,22 @@
-import Navbar from '../Navbar'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState, useContext } from 'react'
 import { ThreeDots } from "react-loader-spinner";
 import { useNavigate } from 'react-router';
 import axios from 'axios'
 
-import BagContext from '../../contexts/BagContext';
 import { Container, ProductImage, LargeButton, Subtitle, GoesWellWithSection, Paragraph, LongText } from './style'
 import { Title } from "../HomeCard/styled"
+import Navbar from '../Navbar'
+import BagContext from '../../contexts/BagContext';
 
 function Coffee() {
     const navigate = useNavigate();
 
+    const { coffee_id } = useParams();
+    
     const { bag } = useContext(BagContext);
-    const [loading, setLoading] = useState(false)
-    const { coffee_id } = useParams()
+
+    const [loading, setLoading] = useState(false);
     const [coffeeAtributs, setCoffeAtribut] = useState({
         name: '',
         price: '',
@@ -25,7 +27,8 @@ function Coffee() {
         roastType: '',
         density: '',
         goesWellWith: ''
-    })
+    });
+
     function getCoffee() {
         const promise = axios.get("http://localhost:5000/coffees", {
             params: {
@@ -37,7 +40,7 @@ function Coffee() {
         })
     }
 
-    useEffect(getCoffee, [])
+    useEffect(getCoffee, [getCoffee])
 
 
     function choseCoffee() {

@@ -7,7 +7,7 @@ const Title = styled.h1``
 const Container  = styled.article``
 
 const Main = styled.main`
-margin-top: 60px;
+    margin-top: 60px;
 `
 
-export {Main}
+export {Section, Title, Container, Main}

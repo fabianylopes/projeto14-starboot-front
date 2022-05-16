@@ -22,7 +22,7 @@ const Title = styled.h1`
 const Text = styled.h2`
     font-family: 'Actor';
     font-weight: 400;
-    font-size: 14px;
+    font-size: ${props => props.font_size ? props.font_size : '14px'};
     line-height: 17px;
     text-align: start;
     color: #000000;
@@ -30,6 +30,10 @@ const Text = styled.h2`
 
 const Products = styled.div`
     margin-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 `
 
 const Product = styled.div`
@@ -137,7 +141,7 @@ const H1 = styled.h1`
 const H2 = styled.h1`
     font-family: 'Actor';
     font-weight: 400;
-    font-size: 25px;
+    font-size: 22px;
     line-height: 30px;
     text-align: center;
     color: #252522;

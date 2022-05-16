@@ -21,6 +21,12 @@ function getCoffees(){
     return promise;
 }
 
-const api = { signIn, signUp, getCoffees }
+function checkout(body, token){
+    const config = getConfig(token);
+    const promise = axios.post(`${BASE_URL}/checkout`, body, config);
+    return promise;
+}
+
+const api = { signIn, signUp, getCoffees, checkout }
 
 export default api;

@@ -1,18 +1,18 @@
 import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
+import axios from 'axios';
 
 import BagContext from '../../contexts/BagContext';
 import {Banner, Container, Title, Text, H2, Item, Items, Name, Description, Type, Price, KnowMoreButton, AddButton} from './style';
 import Navbar from "../Navbar";
 import Image from '../../assets/coffee.png'
 import api from '../../services/api';
-import axios from 'axios';
 
 function Coffees(){
     const navigate = useNavigate();
 
-    const { bag, setBag } = useContext(BagContext);
+    const { bag } = useContext(BagContext);
     
     const [coffeeList, setCoffeeList] = useState([]);
 
@@ -22,9 +22,7 @@ function Coffees(){
         api.getCoffees().then((response) => setCoffeeList(response.data)).catch((error) => console.log(error));
     }
 
-    function choseCoffee(coffee_id) {
-        //setLoading(true)
-
+    function choseCoffee(coffee_id){
         const promise = axios.put("http://localhost:5000/bag",
             {
                 requiredQuantity: 1
@@ -40,11 +38,9 @@ function Coffees(){
             navigate('/bag')
         })
         promise.catch((error)=>{
-            //setLoading(false)
             alert('Não foi possível adicionar o item', error)
             console.log(error)
         })
-
     }
 
     return(
