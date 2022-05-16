@@ -13,7 +13,7 @@ function Coffee() {
     const navigate = useNavigate();
 
     const { coffee_id } = useParams();
-    
+
     const { bag } = useContext(BagContext);
 
     const [loading, setLoading] = useState(false);
@@ -30,7 +30,7 @@ function Coffee() {
     });
 
     function getCoffee() {
-        const promise = axios.get("http://localhost:5000/coffees", {
+        const promise = axios.get("https://star-boot.herokuapp.com/coffees", {
             params: {
                 id: coffee_id
             }
@@ -46,10 +46,10 @@ function Coffee() {
     function choseCoffee() {
         setLoading(true)
 
-        const promise = axios.put("http://localhost:5000/bag",
+        const promise = axios.put("https://star-boot.herokuapp.com/bag",
             {
                 requiredQuantity: 1
-            }, 
+            },
             {
                 params: {
                     product_id: coffee_id,
@@ -61,7 +61,7 @@ function Coffee() {
             navigate('/bag');
         });
 
-        promise.catch((error)=>{
+        promise.catch((error) => {
             setLoading(false)
             alert('Ops. Parece que o ítem ficou indisponível em nosso estoque. Nossas sinceras desculpas.', error)
             console.log(error)
@@ -71,12 +71,12 @@ function Coffee() {
 
     return (
         <>
-            <Navbar colorCoffee={true} colorBag={false}/>
+            <Navbar colorCoffee={true} colorBag={false} />
             <main>
                 <Container height={'411px'} background_Color={"white"}>
                     <ProductImage src={coffeeAtributs.productImage} />
-                    <LargeButton onClick={choseCoffee} unavailable={coffeeAtributs.quantity <1 } disabled={coffeeAtributs.quantity <1 }>
-                    {loading ? <ThreeDots color="white" height={100} width={100}/> : coffeeAtributs.quantity <1 ?  "INDISPONÍVEL" : "ADICIONAR"}
+                    <LargeButton onClick={choseCoffee} unavailable={coffeeAtributs.quantity < 1} disabled={coffeeAtributs.quantity < 1}>
+                        {loading ? <ThreeDots color="white" height={100} width={100} /> : coffeeAtributs.quantity < 1 ? "INDISPONÍVEL" : "ADICIONAR"}
                     </LargeButton>
                 </Container>
                 <Container height={'170px'} background_Color={'rgba(238, 235, 232, 1)'} justify_content={"space-around"}>

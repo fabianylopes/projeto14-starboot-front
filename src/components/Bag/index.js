@@ -22,7 +22,7 @@ function Bag() {
   const [customer_id, setCustomer_id] = useState(undefined);
 
   function getBag(){
-    const promise = axios.get("http://localhost:5000/bag",{ headers: { Authorization: `Bearer ${bag}` }})
+    const promise = axios.get("https://star-boot.herokuapp.com/bag",{ headers: { Authorization: `Bearer ${bag}` }})
     
     promise.then((response) =>{
       const {products, customer_id} = response.data;
@@ -36,7 +36,7 @@ function Bag() {
 
   function checkCustomerID(id){
     if(id){
-      const promise = axios.get('http://localhost:5000/customer', {
+      const promise = axios.get('https://star-boot.herokuapp.com/customer', {
         params: {
             id
         }

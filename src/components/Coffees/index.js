@@ -23,7 +23,7 @@ function Coffees(){
     }
 
     function choseCoffee(coffee_id){
-        const promise = axios.put("http://localhost:5000/bag",
+        const promise = axios.put("https://star-boot.herokuapp.com/bag",
             {
                 requiredQuantity: 1
             }, 

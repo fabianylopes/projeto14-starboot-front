@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'https://star-boot.herokuapp.com';
 
 function getConfig(token){
     return { headers: { Authorization: `Bearer ${token}` } };

@@ -21,7 +21,7 @@ function App() {
     const existingToken = localStorage.getItem('bag_token');
 
     if (!existingToken){
-      const promise = axios.post("http://localhost:5000/bag")
+      const promise = axios.post("https://star-boot.herokuapp.com/bag")
       
       promise.then((response) =>{
        localStorage.setItem('bag_token', response.data);
