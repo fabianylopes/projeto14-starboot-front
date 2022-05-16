@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router';
 import { useState } from  'react';
 
 import {Img, Text, Title, Input, SmallerInput, Button, Form, Div, StyledLink } from './style';
-import Logo from '../../assets/logo.png';
+import Logo from '../../assets/logo.js';
 import api from '../../services/api';
 
 function SignUp() {
@@ -33,7 +33,7 @@ function SignUp() {
   return (
     <>  
       <Img>
-        <img src={Logo}alt=""/>
+        {Logo}
       </Img>
       <Title>STARBOOT</Title>
       <Form onSubmit={handleSignUp}>

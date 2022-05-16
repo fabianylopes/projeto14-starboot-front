@@ -21,10 +21,13 @@ const HomeLogo = styled.div`
     height: 50px;
 `
 
-const Brand =  styled.img`
+const Brand =  styled.div`
     width: 100%;
     height: 100%;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 const Options = styled.div`

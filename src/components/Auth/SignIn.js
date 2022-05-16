@@ -4,7 +4,7 @@ import { useState, useContext } from 'react';
 import BagContext from '../../contexts/BagContext';
 import UserContext from '../../contexts/UserContext';
 import { Img, Title, Input, Button, Form, StyledLink } from './style';
-import Logo from '../../assets/logo.png';
+import Logo from '../../assets/logo.js';
 import api from '../../services/api';
 import axios from 'axios';
 
@@ -51,7 +51,7 @@ function SignIn() {
   return (
     <>
       <Img>
-        <img src={Logo} alt="" />
+       {Logo}
       </Img>
       <Title>STARBOOT</Title>
       <Form onSubmit={handleSignIn}>

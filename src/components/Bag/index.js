@@ -20,7 +20,7 @@ function Bag() {
   const [customer_id, setCustomer_id] = useState(undefined)
   const {bag} = useContext(BagContext)
   const { userInfo, setUserInfo } = useContext(UserContext)
-  const token = bag.token;
+  const token = bag
 
   function getBag(){
     const promise = axios.get("http://localhost:5000/bag",{ headers: { Authorization: `Bearer ${bag}` }})
@@ -56,11 +56,11 @@ function Bag() {
     setTotal(total.toFixed(2))
   }
 
-  useEffect(getBag, [getBag]);
+  useEffect(getBag, []);
 
   function checkOut(){
     
-    const confirmBuy = confirm('Deseja realmente finalizar a compra?');
+    const confirmBuy = window.confirm('Deseja realmente finalizar a compra?');
     
     if(confirmBuy){
       api.checkout(bag, token).then(handleSuccess).catch((error) => console.log(error));
