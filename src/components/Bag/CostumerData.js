@@ -6,11 +6,11 @@ import UserContext from '../../contexts/UserContext';
 
 function CostumerData() {
   const { userInfo } = useContext(UserContext);
-
+  console.log(userInfo.userInfo.name)
   return (
     <Container>
-        <Text>SERÁ ENVIADO PARA: {userInfo.name}</Text>
-        <Text>Rua: {userInfo.street}, {userInfo.number}<br/>{userInfo.city}-{userInfo.state}</Text>
+        <Text>SERÁ ENVIADO PARA: {userInfo.userInfo.name}</Text>
+        <Text>Rua: {userInfo.userInfo.street}, {userInfo.userInfo.number}<br/>{userInfo.userInfo.city}-{userInfo.userInfo.state}</Text>
         <Text>Previsão de entrega: 2 dias úteis</Text>
     </Container>
   )

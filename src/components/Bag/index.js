@@ -22,7 +22,6 @@ function Bag() {
     const promise = axios.get("http://localhost:5000/bag",{ headers: { Authorization: `Bearer ${bag}` }})
     promise.then((response) =>{
       const {products, customer_id} = response.data
-      console.log(customer_id)
       setCustomer_id(customer_id)
       setItems(products)
       evaluateTotal(products)
@@ -76,10 +75,10 @@ function Bag() {
       </Total>
       {/* <Success/> */}
       {
-        customer_id === undefined ? <CostumerData/>: ''
+        customer_id  ? <CostumerData/>: ''
       }
       {
-        customer_id === undefined ? <Button>COMPRAR</Button> : <Button onClick={() => navigate('/sign-in')}>FECHAR PEDIDO </Button>
+        customer_id ? <Button>COMPRAR</Button> : <Button onClick={() => navigate('/sign-in')}>FECHAR PEDIDO </Button>
       }
     </>
   )
