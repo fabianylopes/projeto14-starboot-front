@@ -1,17 +1,20 @@
-import { Card, Image, Title, Description, Button } from "./styled"
 import { useNavigate } from "react-router-dom";
 
+import { Card, Image, Title, Description, Button } from "./styled";
+
 function HomeCard(props){
-    const {image, title, description, route} = props
-    const redirectUser = useNavigate()
+    const navigate = useNavigate();
+
+    const {image, title, description, route} = props;
+
     return(
         <Card hasImage = {image !== "" }>
             <Image src={image} hasImage = {image !== "" }/>
             <Title>{title}</Title>
             <Description>{description}</Description>
-            <Button onClick={()=>redirectUser(route)}>SAIBA MAIS</Button>
+            <Button onClick={()=>navigate(route)}>SAIBA MAIS</Button>
         </Card>
-    ) 
+    );
 }
 
-export default HomeCard
+export default HomeCard;

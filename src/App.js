@@ -12,35 +12,28 @@ import Home from "./components/Home";
 
 import axios from "axios";
 
-
-
-
 function App() {
 
   const [bag, setBag] = useState({});
   const [userInfo, setUserInfo] = useState({name:'', street:'', number:'', city:'', state:''});
 
-
   function signInAnonymously(){
-    /*
-    [x] verificar se existe uma sessão para a sacola
-    [x] criar nova sessão, caso não exista uma
-    */
-    const existingToken = localStorage.getItem('bag_token')
+    const existingToken = localStorage.getItem('bag_token');
+
     if (!existingToken){
       const promise = axios.post("http://localhost:5000/bag")
+      
       promise.then((response) =>{
-       localStorage.setItem('bag_token', response.data)
-       setBag(response.data)
-       
-      })
+       localStorage.setItem('bag_token', response.data);
+       setBag(response.data);       
+      });
+
     } else {
       setBag(existingToken)
     }
-
   }
-
-    useEffect(signInAnonymously, [signInAnonymously]) 
+  
+  useEffect(signInAnonymously, [signInAnonymously]);
   
   return (
     <BagContext.Provider value={{ bag, setBag}}>
