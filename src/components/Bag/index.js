@@ -3,22 +3,25 @@ import { useNavigate } from 'react-router';
 import { useContext, useState, useEffect } from 'react'
 
 import { Title, Text, Products, Product, Info, Name, Quantity, Price, Line, Total, Button, Box, H1, H2, SuccessButton } from './style';
-import UserContext from '../../contexts/UserContext';
 import BagContext from '../../contexts/BagContext';
 import Navbar from '../Navbar'
 import CostumerData from './CostumerData';
-import Success from './Success';
 import axios from 'axios'
 import api from '../../services/api';
+import UserContext from '../../contexts/UserContext';
 
 function Bag() {
   const navigate = useNavigate();
 
+  const { bag } = useContext(BagContext);
+  const { userInfo } = useContext(UserContext);
+  
   const [orderNumber, setOrderNumber] = useState(null);
   const [total, setTotal] = useState(0.0);
   const [items, setItems] = useState([]) //{productImage:'', name: '', quantity: 0.0, price: 0.0}
-  const [customer_id, setCustomer_id] = useState(null);
-  const { bag } = useContext(BagContext);
+  const [customer_id, setCustomer_id] = useState(undefined);
+
+  const token = bag.token;
 
   function getBag(){
     const promise = axios.get("http://localhost:5000/bag",{ headers: { Authorization: `Bearer ${bag}` }})
@@ -35,18 +38,19 @@ function Bag() {
     for(let item of data){
       total += item.price
     }
-    setTotal(total)
+    setTotal(total.toFixed(2))
   }
 
-  useEffect(getBag, []);
+  useEffect(getBag, [getBag]);
 
   function checkOut(){
-    api.checkout(bag).then(handleSuccess).catch((error) => console.log(error));
+    api.checkout(bag, token).then(handleSuccess).catch((error) => console.log(error));
   }
 
   function handleSuccess(response){
     setOrderNumber(response.data);
   }
+  
 
   if(items.length === 0){
     return (
@@ -84,7 +88,7 @@ function Bag() {
         <Text>{`R$ ${total}`}</Text>
       </Total>
 
-      {customer_id !== null && <CostumerData/>}
+      {customer_id !== undefined  && <CostumerData/>}
       
       <LastPage/>
     </>
@@ -92,7 +96,7 @@ function Bag() {
 
 
   function LastPage(){
-    if(orderNumber !== null && customer_id !== null){
+    if(orderNumber !== null && customer_id !== undefined){
       return (
         <Box>
           <div>
@@ -104,7 +108,7 @@ function Bag() {
       );
     } else {
       return (
-        customer_id !== null ? <Button>COMPRAR</Button> : <Button onClick={() => navigate('/sign-in')}>FECHAR PEDIDO</Button>
+        customer_id !== undefined ? <Button onClick={checkOut}>COMPRAR</Button> : <Button onClick={() => navigate('/sign-in')}>FECHAR PEDIDO</Button>
       );
     }
 

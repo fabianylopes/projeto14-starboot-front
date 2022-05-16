@@ -1,8 +1,8 @@
-import HomeCard from '../HomeCard'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import Navbar from '../Navbar'
 
+import Navbar from '../Navbar'
+import HomeCard from '../HomeCard'
 import { Main } from './style'
 
 function Home() {
@@ -44,4 +44,4 @@ function Home() {
     )
 }
 
-export default Home
+export default Home;

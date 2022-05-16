@@ -41,7 +41,7 @@ function App() {
 
   }
 
-    useEffect(signInAnonymously, [])
+    useEffect(signInAnonymously, [signInAnonymously]) 
   
   return (
     <BagContext.Provider value={{ bag, setBag}}>

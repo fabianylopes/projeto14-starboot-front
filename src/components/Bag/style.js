@@ -32,6 +32,7 @@ const Products = styled.div`
     margin-top: 10px;
 
     display: flex;
+    flex-direction: column;
     gap: 10px;
 `
 
@@ -140,7 +141,7 @@ const H1 = styled.h1`
 const H2 = styled.h1`
     font-family: 'Actor';
     font-weight: 400;
-    font-size: 25px;
+    font-size: 22px;
     line-height: 30px;
     text-align: center;
     color: #252522;

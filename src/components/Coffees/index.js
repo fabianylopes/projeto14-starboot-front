@@ -12,22 +12,9 @@ import api from '../../services/api';
 function Coffees(){
     const navigate = useNavigate();
 
-    const { bag, setBag } = useContext(BagContext);
+    const { bag } = useContext(BagContext);
     
     const [coffeeList, setCoffeeList] = useState([]);
-
-    const [coffeeAtributs, setCoffeAtribut] = useState({
-        name: '',
-        price: '',
-        quantity: '',
-        productImage: '',
-        description: '',
-        descriptionImage: '',
-        roastType: '',
-        density: '',
-        goesWellWith: ''
-    })
-
 
     useEffect(() => getProducts(), []);
 
@@ -36,16 +23,26 @@ function Coffees(){
     }
 
     function choseCoffee(coffee_id){
-        const promise = axios.get("http://localhost:5000/coffees", {
-            params: {
-                id: coffee_id
-            }
+        const promise = axios.put("http://localhost:5000/bag",
+            {
+                requiredQuantity: 1
+            }, 
+            {
+                params: {
+                    product_id: coffee_id,
+                    bag_token: bag
+                }
+            })
+
+        promise.then(() => {
+            navigate('/bag')
         })
-        promise.then((response) => {
-            setCoffeAtribut(response.data);
+        promise.catch((error)=>{
+            alert('Não foi possível adicionar o item', error)
+            console.log(error)
         })
     }
-    console.log(bag);
+
     return(
         <>
             <Navbar colorCoffee={true} colorBag={false}/>

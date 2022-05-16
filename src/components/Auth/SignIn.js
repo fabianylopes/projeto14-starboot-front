@@ -10,7 +10,7 @@ import api from '../../services/api';
 function SignIn() {
   const navigate = useNavigate();
 
-  const { userInfo, setUserInfo } = useContext(UserContext);
+  const { setUserInfo } = useContext(UserContext);
   const { bag, setBag } = useContext(BagContext);
 
   const [formInfo, setFormInfo] = useState({});
@@ -22,19 +22,17 @@ function SignIn() {
   }
 
   function handleSuccess(response){
-    //setUserInfo(response.data.customerInfo);
-    ///console.log(userInfo)
-    setBag({...bag, userInfo: response.data.customerInfo});
-
-    navigate('/')
+    setUserInfo(response.data.customerInfo);
+    setBag({...bag, userInfo: response.data.customerInfo, customer_id: response.data.customer_id});
+    
+    navigate('/bag')
   }
-
+  
   function handleFailure(error){
     alert(`${error}!\nPreencha os campos corretamente!`);
     setFormInfo({});
   }
 
-  console.log(bag)
 
   return (
     <>  

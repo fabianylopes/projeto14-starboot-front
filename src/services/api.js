@@ -21,8 +21,9 @@ function getCoffees(){
     return promise;
 }
 
-function checkout(body){
-    const promise = axios.post(`${BASE_URL}/checkout`, body);
+function checkout(body, token){
+    const config = getConfig(token);
+    const promise = axios.post(`${BASE_URL}/checkout`, body, config);
     return promise;
 }
 
